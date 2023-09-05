@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Mass-Mail Dispatcher</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Mass-Mail Dispatcher</h1>
+      </header>
+      <img src="" alt="" />
+      <main>
+        <form id="emailForm">
+          <label for="From">Form</label>
+          <textarea id="Form" rows="1" cols="1"></textarea>
+          <label for="Subject">Subject</label>
+          <textarea id="subject" rows="1" cols="2"></textarea>
+          <label for="emailContent">Mail Content:</label>
+          <textarea id="emailContent" rows="4" cols="50" required></textarea>
+          <label for="csvFile">Upload a CSV file:</label>
+          <input type="file" id="csvFile" accept=".csv" required />
+          <button type="submit">Upload and Send</button>
+        </form>
+        <div class="email-list">
+          <div class="invalid-emails">
+            <h2>Invalid Email Addresses</h2>
+            <ul id="invalidList"></ul>
+          </div>
+          <div class="valid-emails">
+            <h2>Valid Email Addresses</h2>
+            <ul id="validList"></ul>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      const emailForm = document.getElementById("emailForm");
+      const csvFileInput = document.getElementById("csvFile");
+      const invalidList = document.getElementById("invalidList");
+      const validList = document.getElementById("validList");
+      const emailContentInput = document.getElementById("emailContent"); // New mail content input
+
+      emailForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const file = csvFileInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (event) {
+            const csvContent = event.target.result;
+            const lines = csvContent.split("\n");
+
+            const invalidEmails = [];
+            const validEmails = [];
+
+            lines.forEach((line) => {
+              const email = line.trim();
+              if (isValidEmail(email)) {
+                validEmails.push(email);
+              } else {
+                invalidEmails.push(email);
+              }
+            });
+
+            displayEmails(invalidEmails, invalidList);
+            displayEmails(validEmails, validList);
+          };
+          reader.readAsText(file);
+        }
+      });
+
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      function displayEmails(emails, targetElement) {
+        targetElement.innerHTML = "";
+        emails.forEach((email) => {
+          const li = document.createElement("li");
+          li.textContent = email;
+          targetElement.appendChild(li);
+        });
+      }
+    </script>
+  </body>
+</html>
