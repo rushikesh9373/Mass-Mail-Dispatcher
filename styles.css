@@ -1,0 +1,86 @@
+/* Add your CSS styles here */
+/* Add your CSS styles here */
+body {
+  font-family: Georgia, "Times New Roman", Times, serif, sans-serif;
+  background-image: url("Image1.jpeg"); /* Replace 'your-image-url.jpg' with the path to your background image */
+  background-size: cover;
+  background-position: center center;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #7ecbe7;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: #5e5e3a;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="file"],
+textarea {
+  padding: 10px;
+  border: 1px solid #9ff0e5;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #85c8e1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #7dafe4;
+}
+
+.email-list {
+  display: flex;
+  gap: 20px;
+}
+
+.invalid-emails,
+.valid-emails {
+  flex: 1;
+  padding: 10px;
+  background-color: #eed0f3;
+  box-shadow: 0 0 5px rgba(45, 1, 74, 0.2);
+}
+
+h2 {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
